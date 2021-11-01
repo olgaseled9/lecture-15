@@ -9,22 +9,21 @@
 
     <context:property-placeholder location="classpath:database.properties"/>
 
-      <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+    <bean id="datasource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="DATABASE_DRIVER" value="org.postgresql.Driver"/>
         <property name="DATABASE_URL" value="jdbc:postgresql://localhost:5432/imagine_store"/>
         <property name="DATABASE_USER" value="postgres"/>
         <property name="DATABASE_PASSWORD" value="postgres"/>
     </bean>
 
-    <bean id="BasicDataSource"
-          class="by.itacademy.javaenterprise.repository.Impl.PoolDBConnection"
-          factory-method="getDataSourceConnection">
-        <property name="dataSource" ref="dataSource"/>
+    <bean id="customerService"
+          class="by.itacademy.javaenterprise.dao.CustomerService">
+        <property name="dataSource" ref="basicDataSource"/>
     </bean>
 
-    <bean id="PoolDBConnection"
+    <bean id="basicDataSource"
           class="org.apache.commons.dbcp2.BasicDataSource"
-          factory-method="getDataSourceConnection">
-        <property name="poolDBConnection" ref="poolDBConnection"/>
+          factory-method="getConnection">
+        <property name="connectionFactory" ref="connectionFactory"/>
     </bean>
 </beans>

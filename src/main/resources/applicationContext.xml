@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:database.properties"/>
+
+      <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="DATABASE_DRIVER" value="org.postgresql.Driver"/>
+        <property name="DATABASE_URL" value="jdbc:postgresql://localhost:5432/imagine_store"/>
+        <property name="DATABASE_USER" value="postgres"/>
+        <property name="DATABASE_PASSWORD" value="postgres"/>
+    </bean>
+
+    <bean id="BasicDataSource"
+          class="by.itacademy.javaenterprise.repository.Impl.PoolDBConnection"
+          factory-method="getDataSourceConnection">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="PoolDBConnection"
+          class="org.apache.commons.dbcp2.BasicDataSource"
+          factory-method="getDataSourceConnection">
+        <property name="poolDBConnection" ref="poolDBConnection"/>
+    </bean>
+</beans>

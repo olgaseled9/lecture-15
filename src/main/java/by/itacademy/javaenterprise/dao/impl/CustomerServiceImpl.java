@@ -16,6 +16,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final static Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
     private static BasicDataSource basicDataSource;
+
     public static final String SELECT_FROM_CUSTOMER_TABLE = "SELECT * FROM Customers ORDER BY last_name LIMIT 1 OFFSET 3";
     public static final String DELETE_CUSTOMER_FROM_CUSTOMER_TABLES = "DELETE FROM customers WHERE customer_id = ?";
     public static final String SELECT_FROM_CUSTOMER_TABLE_CUSTOMER_ID = "SELECT customer_id FROM Customers WHERE customer_id=?";
@@ -90,25 +91,5 @@ public class CustomerServiceImpl implements CustomerService {
             close(preparedStatement);
         }
         return customer;
-    }
-
-    @Override
-    public Object create(Object o) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public void update(Object o) throws SQLException {
-
-    }
-
-    @Override
-    public int delete(Object id) throws SQLException {
-        return 0;
-    }
-
-    @Override
-    public Object get(Object id) throws SQLException {
-        return null;
     }
 }

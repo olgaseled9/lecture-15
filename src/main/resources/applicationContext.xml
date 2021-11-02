@@ -9,21 +9,25 @@
 
     <context:property-placeholder location="classpath:database.properties"/>
 
-    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+    <bean id="databaseConfig"
+          class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${DATABASE_DRIVER}"/>
         <property name="url" value="${DATABASE_URL}"/>
         <property name="username" value="${DATABASE_USER}"/>
         <property name="password" value="${DATABASE_PASSWORD}"/>
     </bean>
-
+    <bean id="ConnectionFactoryImpl"
+          class="by.itacademy.javaenterprise.datasourse.impl.ConnectionFactoryImpl">
+        <property name="basicDataSource" ref="databaseConfig"/>
+    </bean>
     <bean id="customerService"
           class="by.itacademy.javaenterprise.dao.impl.CustomerServiceImpl">
-        <property name="dataSource" ref="basicDataSource"/>
+        <property name="connectionFactory" ref="basicDataSource"/>
     </bean>
-
-    <bean id="basicDataSource"
-          class="org.apache.commons.dbcp2.BasicDataSource"
-          factory-method="getConnection">
-        <property name="dataSource" ref="basicDataSource"/>
+    <bean id="orderService"
+          class="by.itacademy.javaenterprise.dao.impl.OrderServiceImpl">
+        <property name="connectionFactory" ref="basicDataSource"/>
     </bean>
 </beans>
+
+

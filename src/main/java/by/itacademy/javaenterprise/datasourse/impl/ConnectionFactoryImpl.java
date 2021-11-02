@@ -1,4 +1,4 @@
-package by.itacademy.javaenterprise.datasourse.Impl;
+package by.itacademy.javaenterprise.datasourse.impl;
 
 import by.itacademy.javaenterprise.datasourse.ConnectionFactory;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -22,19 +22,22 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
             String url = resource.getString("DATABASE_URL");
             String user = resource.getString("DATABASE_USER");
             String password = resource.getString("DATABASE_PASSWORD");
-            if (basicDataSource == null) {
-                BasicDataSource dataSource = new BasicDataSource();
-                dataSource.setUrl(url);
-                dataSource.setUsername(user);
-                dataSource.setPassword(password);
-                dataSource.setMinIdle(15);
-                dataSource.setMaxIdle(25);
-                dataSource.setMaxOpenPreparedStatements(250);
-                basicDataSource = dataSource;
-            }
+            String driver=resource.getString("DATABASE_DRIVER");
+            BasicDataSource dataSource = new BasicDataSource();
+            dataSource.setUrl(url);
+            dataSource.setUsername(user);
+            dataSource.setPassword(password);
+            dataSource.setDriverClassName(driver);
+            dataSource.setMinIdle(15);
+            dataSource.setMaxIdle(25);
+            dataSource.setMaxOpenPreparedStatements(250);
+            basicDataSource = dataSource;
         }
-        return basicDataSource.getConnection();
+        try {
+            return basicDataSource.getConnection();
+        } catch (SQLException e) {
+            logger.error(e.getMessage(), e);
+            throw new IllegalArgumentException("Connection is not available", e);
+        }
     }
 }
-
-

@@ -19,8 +19,8 @@ public class TestSpring {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext.xml"
         );
-       ConnectionFactory connectionFactory=context.getBean("ConnectionFactoryImpl", ConnectionFactoryImpl.class);
-       CustomerService customerService = context.getBean("CustomerServiceImpl", CustomerServiceImpl.class);
+        ConnectionFactory connectionFactory = context.getBean("ConnectionFactoryImpl", ConnectionFactoryImpl.class);
+        CustomerService customerService = context.getBean("CustomerServiceImpl", CustomerServiceImpl.class);
 
         context.close();
     }

@@ -34,7 +34,6 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
-
     @Override
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
@@ -73,7 +72,6 @@ public class OrderServiceImpl implements OrderService {
             logger.error("Deleting order from database failed", e);
         }
     }
-
 }
 
 

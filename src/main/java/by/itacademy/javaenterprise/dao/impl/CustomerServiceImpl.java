@@ -60,7 +60,6 @@ public class CustomerServiceImpl implements CustomerService {
         return customers;
     }
 
-
     @Override
     public void deleteCustomerById(Integer customerId) {
         Connection connection = null;

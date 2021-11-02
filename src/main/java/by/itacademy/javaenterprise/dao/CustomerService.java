@@ -12,6 +12,5 @@ public interface CustomerService<K> extends DAOFactory<K> {
 
     void deleteCustomerById(Integer customerId);
 
-
     Customer findCustomerByCustomerId(Integer customerID);
 }

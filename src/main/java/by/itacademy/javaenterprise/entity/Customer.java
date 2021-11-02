@@ -7,6 +7,9 @@ public class Customer {
     private String firstName;
     private String lastName;
 
+    public Customer() {
+    }
+
     public Integer getCustomerId() {
         return customerId;
     }

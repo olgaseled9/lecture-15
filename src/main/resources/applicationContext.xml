@@ -9,21 +9,15 @@
 
     <context:property-placeholder location="classpath:database.properties"/>
 
-    <bean id="datasource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-        <property name="DATABASE_DRIVER" value="org.postgresql.Driver"/>
-        <property name="DATABASE_URL" value="jdbc:postgresql://localhost:5432/imagine_store"/>
-        <property name="DATABASE_USER" value="postgres"/>
-        <property name="DATABASE_PASSWORD" value="postgres"/>
+    <bean id="basicDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${DATABASE_DRIVER}"/>
+        <property name="url" value="${DATABASE_URL}"/>
+        <property name="username" value="${DATABASE_USER}"/>
+        <property name="password" value="${DATABASE_PASSWORD}"/>
     </bean>
 
     <bean id="customerService"
-          class="by.itacademy.javaenterprise.dao.CustomerService">
-        <property name="dataSource" ref="basicDataSource"/>
-    </bean>
-
-    <bean id="basicDataSource"
-          class="org.apache.commons.dbcp2.BasicDataSource"
-          factory-method="getConnection">
-        <property name="connectionFactory" ref="connectionFactory"/>
+          class="by.itacademy.javaenterprise.dao.impl.CustomerServiceImpl">
+        <constructor-arg ref="basicDataSource"/>
     </bean>
 </beans>

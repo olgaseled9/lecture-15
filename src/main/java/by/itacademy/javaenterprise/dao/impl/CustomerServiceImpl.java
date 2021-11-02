@@ -1,4 +1,4 @@
-package by.itacademy.javaenterprise.dao.Impl;
+package by.itacademy.javaenterprise.dao.impl;
 
 import by.itacademy.javaenterprise.dao.CustomerService;
 import by.itacademy.javaenterprise.entity.Customer;

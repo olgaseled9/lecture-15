@@ -14,7 +14,6 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
     private final static Logger logger = LoggerFactory.getLogger(ConnectionFactoryImpl.class);
     private static BasicDataSource basicDataSource;
 
-
     @Override
     public Connection getConnection() throws SQLException {
         if (basicDataSource == null) {
@@ -22,7 +21,7 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
             String url = resource.getString("DATABASE_URL");
             String user = resource.getString("DATABASE_USER");
             String password = resource.getString("DATABASE_PASSWORD");
-            String driver=resource.getString("DATABASE_DRIVER");
+            String driver = resource.getString("DATABASE_DRIVER");
             BasicDataSource dataSource = new BasicDataSource();
             dataSource.setUrl(url);
             dataSource.setUsername(user);

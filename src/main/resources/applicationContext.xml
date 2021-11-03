@@ -7,27 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:database.properties"/>
-
-    <bean id="databaseConfig"
-          class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${DATABASE_DRIVER}"/>
-        <property name="url" value="${DATABASE_URL}"/>
-        <property name="username" value="${DATABASE_USER}"/>
-        <property name="password" value="${DATABASE_PASSWORD}"/>
-    </bean>
-    <bean id="connectionFactoryImpl"
-          class="by.itacademy.javaenterprise.datasourse.impl.ConnectionFactoryImpl">
-           <property name="basicDataSource" ref="databaseConfig"/>
-    </bean>
-     <bean id="customerService"
-          class="by.itacademy.javaenterprise.dao.impl.CustomerServiceImpl">
-       <property name="dataSource" ref="databaseConfig"/>
-    </bean>
-    <bean id="orderService"
-          class="by.itacademy.javaenterprise.dao.impl.OrderServiceImpl">
-      <property name="dataSource" ref="databaseConfig"/>
-    </bean>
+    <context:component-scan base-package="by.itacademy.javaenterprise"/>
 </beans>
 
 

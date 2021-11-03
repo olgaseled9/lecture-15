@@ -4,6 +4,7 @@ import by.itacademy.javaenterprise.dao.CustomerService;
 import by.itacademy.javaenterprise.entity.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import static org.postgresql.util.JdbcBlackHole.close;
 
+@Component ("customerBean")
 public class CustomerServiceImpl implements CustomerService {
 
     private final static Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
@@ -26,6 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
+            connection = dataSource.getConnection();
             preparedStatement.setInt(1, customer.getCustomerId());
             preparedStatement.setString(2, customer.getFirstName());
             preparedStatement.setString(3, customer.getLastName());
@@ -81,6 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = new Customer();
         PreparedStatement preparedStatement = null;
         try {
+            connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(SELECT_FROM_CUSTOMER_TABLE_CUSTOMER_ID);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();

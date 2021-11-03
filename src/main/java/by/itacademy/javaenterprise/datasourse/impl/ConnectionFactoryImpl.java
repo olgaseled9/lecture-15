@@ -4,11 +4,13 @@ import by.itacademy.javaenterprise.datasourse.ConnectionFactory;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+@Component ("connectionBean")
 public class ConnectionFactoryImpl implements ConnectionFactory {
 
     private final static Logger logger = LoggerFactory.getLogger(ConnectionFactoryImpl.class);

@@ -17,7 +17,7 @@ public class TestSpring {
                 "applicationContext.xml"
         );
 
-        CustomerServiceImpl customerServiceImpl = context.getBean("customerService", CustomerServiceImpl.class);
+        CustomerServiceImpl customerServiceImpl = context.getBean("customerBean", CustomerServiceImpl.class);
         customerServiceImpl.deleteCustomerById(2);
         context.close();
     }

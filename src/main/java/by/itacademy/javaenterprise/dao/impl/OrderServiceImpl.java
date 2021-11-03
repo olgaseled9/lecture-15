@@ -4,6 +4,7 @@ import by.itacademy.javaenterprise.dao.OrderService;
 import by.itacademy.javaenterprise.entity.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import static org.postgresql.util.JdbcBlackHole.close;
 
+@Component ("orderBean")
 public class OrderServiceImpl implements OrderService {
     private final static Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
     private DataSource dataSource;

@@ -2,10 +2,10 @@ package by.itacademy.javaenterprise.dao.impl;
 
 import by.itacademy.javaenterprise.dao.OrderService;
 import by.itacademy.javaenterprise.entity.Order;
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,8 @@ import static org.postgresql.util.JdbcBlackHole.close;
 
 public class OrderServiceImpl implements OrderService {
     private final static Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
-    private static BasicDataSource basicDataSource;
+    private DataSource dataSource;
+
     public static final String SELECT_FROM_ORDER_TABLE = "SELECT * FROM Orders ORDER BY order_id LIMIT 1 OFFSET 1;";
     public static final String DELETE_ORDER_FROM_CUSTOMER_TABLES = "DELETE FROM Orders WHERE order_id = ?";
 
@@ -40,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
         Connection connection = null;
         Statement statement = null;
         try {
-            connection = basicDataSource.getConnection();
+            connection = dataSource.getConnection();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SELECT_FROM_ORDER_TABLE);
             while (resultSet.next()) {
@@ -64,13 +65,17 @@ public class OrderServiceImpl implements OrderService {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
-            connection = basicDataSource.getConnection();
+            connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(DELETE_ORDER_FROM_CUSTOMER_TABLES);
             preparedStatement.setInt(1, orderId);
             int affectedRows = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error("Deleting order from database failed", e);
         }
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }
 

@@ -39,4 +39,7 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
             throw new IllegalArgumentException("Connection is not available", e);
         }
     }
+
+    public void setBasicDataSource(BasicDataSource basicDataSource) {
+    }
 }

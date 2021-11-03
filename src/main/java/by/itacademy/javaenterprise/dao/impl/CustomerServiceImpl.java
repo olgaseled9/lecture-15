@@ -2,10 +2,10 @@ package by.itacademy.javaenterprise.dao.impl;
 
 import by.itacademy.javaenterprise.dao.CustomerService;
 import by.itacademy.javaenterprise.entity.Customer;
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import static org.postgresql.util.JdbcBlackHole.close;
 public class CustomerServiceImpl implements CustomerService {
 
     private final static Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
-    private static BasicDataSource basicDataSource;
+    private DataSource dataSource;
 
     public static final String SELECT_FROM_CUSTOMER_TABLE = "SELECT * FROM Customers ORDER BY last_name LIMIT 1 OFFSET 3";
     public static final String DELETE_CUSTOMER_FROM_CUSTOMER_TABLES = "DELETE FROM customers WHERE customer_id = ?";
@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
         Connection connection = null;
         Statement statement = null;
         try {
-            connection = basicDataSource.getConnection();
+            connection = dataSource.getConnection();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SELECT_FROM_CUSTOMER_TABLE);
             while (resultSet.next()) {
@@ -66,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
-            connection = basicDataSource.getConnection();
+            connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(DELETE_CUSTOMER_FROM_CUSTOMER_TABLES);
             preparedStatement.setInt(1, customerId);
             int affectedRows = preparedStatement.executeUpdate();
@@ -91,5 +91,9 @@ public class CustomerServiceImpl implements CustomerService {
             close(preparedStatement);
         }
         return customer;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }

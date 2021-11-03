@@ -4,7 +4,7 @@ import by.itacademy.javaenterprise.entity.Customer;
 
 import java.util.List;
 
-public interface CustomerService<K>  {
+public interface CustomerService<K> {
 
     Customer addCustomer(Customer customer);
 

@@ -16,17 +16,17 @@ import javax.sql.DataSource;
 @PropertySource("classpath:database.properties")
 public class SpringConfig {
 
-    @Value("${org.postgresql.Driver}")
+    @Value("${database.driver}")
     private String driverClassName;
-    @Value("${jdbc:postgresql://localhost:5432/imagine_store}")
+    @Value("${database.url}")
     private String databaseUrl;
-    @Value("${postgres}")
+    @Value("${database.user}")
     private String databaseUser;
-    @Value("${postgres}")
+    @Value("${database.password}")
     private String databasePassword;
-    @Value("#{0}")
+    @Value("${database.minIdle}")
     private int databaseMixIdle;
-    @Value("#{15}")
+    @Value("${database.maxIdle}")
     private int databaseMaxIdle;
 
     @Bean

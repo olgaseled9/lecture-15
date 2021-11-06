@@ -2,12 +2,9 @@ package by.itacademy.javaenterprise.seledtsova.dao.impl;
 
 import by.itacademy.javaenterprise.seledtsova.dao.CustomerDao;
 import by.itacademy.javaenterprise.seledtsova.entity.Customer;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -17,7 +14,7 @@ import java.util.List;
 
 import static org.postgresql.util.JdbcBlackHole.close;
 
-@Component ("customerDaoBean")
+@Component("customerDaoBean")
 public class CustomerDaoImpl implements CustomerDao {
 
     private final static Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
@@ -26,9 +23,10 @@ public class CustomerDaoImpl implements CustomerDao {
 
     private DataSource dataSource;
 
-    public static final String SELECT_FROM_CUSTOMER_TABLE = "SELECT * FROM Customers ORDER BY last_name LIMIT 1 OFFSET 3";
-    public static final String DELETE_CUSTOMER_FROM_CUSTOMER_TABLES = "DELETE FROM customers WHERE customer_id = ?";
+    public static final String SELECT_FROM_CUSTOMER_TABLE = "SELECT * FROM Customers ORDER BY last_name LIMIT 100 OFFSET 3";
+    public static final String DELETE_CUSTOMER_FROM_CUSTOMER_TABLES = "DELETE FROM Customers WHERE customer_id = ?";
     public static final String SELECT_FROM_CUSTOMER_TABLE_CUSTOMER_ID = "SELECT customer_id FROM Customers WHERE customer_id=?";
+    private static final String ADD_NEW_CUSTOMER = "INSERT INTO Customers (customer_id, first_name, last_name) VALUES (?,?,?)";
 
     @Override
     public Customer addCustomer(Customer customer) {
@@ -36,6 +34,7 @@ public class CustomerDaoImpl implements CustomerDao {
         PreparedStatement preparedStatement = null;
         try {
             connection = dataSource.getConnection();
+            preparedStatement = connection.prepareStatement(ADD_NEW_CUSTOMER);
             preparedStatement.setInt(1, customer.getCustomerId());
             preparedStatement.setString(2, customer.getFirstName());
             preparedStatement.setString(3, customer.getLastName());

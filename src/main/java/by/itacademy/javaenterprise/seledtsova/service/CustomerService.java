@@ -22,7 +22,6 @@ public class CustomerService {
     public void setCustomerDao(CustomerDao customerDao) {
         this.customerDao = customerDao;
     }
-
 }
 
 

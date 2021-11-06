@@ -1,11 +1,16 @@
-# lecture-12
-Home task lecture 12:
-0. Git repo
-1. Add Spring core to lecture 11
-2. Spring XML config
-3. All DAO to spring beans
-4. Beans for DataSource/Connection Pool
-   4.1 DataBase configs to spring XML configs
+Hometask lecture 13
+0. git repo
+1. base on hometask 12
+2. remove all xml configuration
+3. All beans to annotation
+4. at least 2 beans of the same type (interface)
+5. inject by Autowired
+6. inject by Qualified
 
 Additional for 10
-5. Spring properties for jdbc properties (driver, location, user, password)
+7. Spring bean for DataSource (jdbc pool per student)
+8. jdbc properties by @Value annotation
+9. docker-compose file with your db
+10. schema to flyway/liquibase (per student)
+
+

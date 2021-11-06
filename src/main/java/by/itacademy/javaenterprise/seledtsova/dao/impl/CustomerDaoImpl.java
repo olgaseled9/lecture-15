@@ -1,9 +1,13 @@
-package by.itacademy.javaenterprise.dao.impl;
+package by.itacademy.javaenterprise.seledtsova.dao.impl;
 
-import by.itacademy.javaenterprise.dao.CustomerService;
-import by.itacademy.javaenterprise.entity.Customer;
+import by.itacademy.javaenterprise.seledtsova.dao.CustomerDao;
+import by.itacademy.javaenterprise.seledtsova.entity.Customer;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -13,10 +17,13 @@ import java.util.List;
 
 import static org.postgresql.util.JdbcBlackHole.close;
 
-@Component ("customerBean")
-public class CustomerServiceImpl implements CustomerService {
+@Component ("customerDaoBean")
+public class CustomerDaoImpl implements CustomerDao {
 
-    private final static Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
+
+    private CustomerDaoImpl customerDaoImpl;
+
     private DataSource dataSource;
 
     public static final String SELECT_FROM_CUSTOMER_TABLE = "SELECT * FROM Customers ORDER BY last_name LIMIT 1 OFFSET 3";
@@ -97,6 +104,7 @@ public class CustomerServiceImpl implements CustomerService {
         return customer;
     }
 
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }

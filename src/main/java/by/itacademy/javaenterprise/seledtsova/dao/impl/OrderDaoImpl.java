@@ -1,9 +1,11 @@
-package by.itacademy.javaenterprise.dao.impl;
+package by.itacademy.javaenterprise.seledtsova.dao.impl;
 
-import by.itacademy.javaenterprise.dao.OrderService;
-import by.itacademy.javaenterprise.entity.Order;
+import by.itacademy.javaenterprise.seledtsova.dao.OrderDao;
+import by.itacademy.javaenterprise.seledtsova.entity.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -13,14 +15,13 @@ import java.util.List;
 
 import static org.postgresql.util.JdbcBlackHole.close;
 
-@Component ("orderBean")
-public class OrderServiceImpl implements OrderService {
-    private final static Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
+@Component ("orderDaoBean")
+public class OrderDaoImpl implements OrderDao {
+    private final static Logger logger = LoggerFactory.getLogger(OrderDaoImpl.class);
     private DataSource dataSource;
 
     public static final String SELECT_FROM_ORDER_TABLE = "SELECT * FROM Orders ORDER BY order_id LIMIT 1 OFFSET 1;";
     public static final String DELETE_ORDER_FROM_CUSTOMER_TABLES = "DELETE FROM Orders WHERE order_id = ?";
-
 
     @Override
     public Order addOrder(Order order) {
@@ -76,6 +77,7 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }

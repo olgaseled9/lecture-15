@@ -1,4 +1,4 @@
-package by.itacademy.javaenterprise.datasourse;
+package by.itacademy.javaenterprise.seledtsova.sqlscripts;
 
 public interface SqlConstant {
     String SELECT_FROM_CUSTOMER_TABLE = "SELECT * FROM Customers ORDER BY last_name LIMIT 1 OFFSET 3";

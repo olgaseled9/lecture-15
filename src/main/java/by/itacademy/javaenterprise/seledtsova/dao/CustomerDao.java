@@ -1,10 +1,12 @@
-package by.itacademy.javaenterprise.dao;
+package by.itacademy.javaenterprise.seledtsova.dao;
 
-import by.itacademy.javaenterprise.entity.Customer;
+import by.itacademy.javaenterprise.seledtsova.entity.Customer;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
-public interface CustomerService<K> {
+
+public interface CustomerDao<K> {
 
     Customer addCustomer(Customer customer);
 

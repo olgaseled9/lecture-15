@@ -15,7 +15,13 @@ import java.util.List;
 public class Order {
 
     private Integer orderId;
-    private Integer CustomerId;
+    private Integer customerId;
     private String dateOrder;
     private List<Customer> customers;
+
+    public Order(Integer orderId, Integer customerId, String dateOrder) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.dateOrder = dateOrder;
+    }
 }

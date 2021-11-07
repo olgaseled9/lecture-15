@@ -12,7 +12,5 @@ public interface OrderDao {
 
     void deleteOrderById(Integer orderId);
 
-    Order findOrderByCustomerId(Integer customerID);
-
     public void update(int orderId, Order order);
 }

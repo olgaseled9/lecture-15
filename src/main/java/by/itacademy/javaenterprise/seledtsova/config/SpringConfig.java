@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -44,7 +45,7 @@ public class SpringConfig {
 
     @Bean
     OrderDaoImpl orderDaoBean() {
-        return new OrderDaoImpl(jdbcTemplate());
+        return new OrderDaoImpl(namedParameterJdbcTemplate());
     }
 
     @Bean
@@ -53,8 +54,13 @@ public class SpringConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){
+    public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataBean());
+    }
+
+    @Bean
+    public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
+        return new NamedParameterJdbcTemplate(jdbcTemplate());
     }
 }
 

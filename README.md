@@ -1,16 +1,15 @@
-Hometask lecture 13
+Hometask lecture 14
 0. git repo
-1. base on hometask 12
-2. remove all xml configuration
-3. All beans to annotation
-4. at least 2 beans of the same type (interface)
-5. inject by Autowired
-6. inject by Qualified
+1. base on hometask 13
+2. README with the task
+3. Add JDBC template from spring
+4. Add 1 DAO implementation with JDBC template
+5. Add 1 DAO implementation with Named JDBC template
+
+NOTE: should be used: queryForObject
 
 Additional for 10
-7. Spring bean for DataSource (jdbc pool per student)
-8. jdbc properties by @Value annotation
-9. docker-compose file with your db
-10. schema to flyway/liquibase (per student)
+6. docker-compose
+7. Tests for DAO
 
 

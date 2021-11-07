@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -43,12 +44,17 @@ public class SpringConfig {
 
     @Bean
     OrderDaoImpl orderDaoBean() {
-        return new OrderDaoImpl();
+        return new OrderDaoImpl(jdbcTemplate());
     }
 
     @Bean
     CustomerDaoImpl customerDaoBean() {
-        return new CustomerDaoImpl();
+        return new CustomerDaoImpl(jdbcTemplate());
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(){
+        return new JdbcTemplate(dataBean());
     }
 }
 

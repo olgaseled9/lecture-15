@@ -21,23 +21,21 @@ public class RunnerSpring {
 
         CustomerDao customerDao = context.getBean("customerDaoBean", CustomerDaoImpl.class);
         logger.info("The bin customerDao class was created successfully");
-//        Customer customer = new Customer();
-//        customer.setCustomerId(17);
-//        customer.setFirstName("Vasia");
-//        customer.setLastName("Cannonov");
-//        customerDao.addCustomer(customer);
-//        System.out.println(customerDao.getAll());
-//        System.out.println(customerDao.findCustomerByCustomerId(17));
+        customerDao.addCustomer(new Customer(26, "Vasia", "Petrov"));
+        System.out.println(customerDao.getAll());
+        System.out.println(customerDao.findCustomerByCustomerId(9));
 
         OrderDao orderDao = context.getBean("orderDaoBean", OrderDaoImpl.class);
         logger.info("The bin orderDao class was created successfully");
-      //  orderDao.addOrder(new Order (33,88,"2021-1-07"));
-      //  System.out.println(orderDao.findOrderByCustomerId(17));
+        orderDao.addOrder(new Order(26, 26, "2020-11-09"));
+        orderDao.deleteOrderById(26);
+        customerDao.deleteCustomerById(26);
         System.out.println(orderDao.getAll());
-        orderDao.deleteOrderById(4);
-         context.close();
+
+        context.close();
     }
 }
+
 
 
 

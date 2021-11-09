@@ -22,7 +22,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public static final String SELECT_FROM_CUSTOMER_TABLE = "SELECT * FROM Customers ORDER BY last_name LIMIT 100 OFFSET 3";
     public static final String DELETE_CUSTOMER_FROM_CUSTOMER_TABLES = "DELETE FROM Customers WHERE customer_id = ?";
-    public static final String SELECT_FROM_CUSTOMER_TABLE_CUSTOMER_ID = "SELECT * FROM Customers WHERE customer_id=?";
+    public static final String SELECT_FROM_CUSTOMER_TABLE_CUSTOMER_ID = "SELECT customer_id, first_name, last_name FROM Customers WHERE customer_id=?";
     private static final String ADD_NEW_CUSTOMER = "INSERT INTO Customers (customer_id, first_name, last_name) VALUES (?,?,?)";
     private static final String UPDATE_CUSTOMER = "UPDATE Customers SET first_name=?, last_name=? WHERE customer_id=?";
 
@@ -55,8 +55,8 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public void update(int customerId, Customer customer) {
-        jdbcTemplate.update(UPDATE_CUSTOMER, customer.getFirstName(), customer.getLastName(), customerId);
+    public int updateCustomerByCustomerId(int customerId, Customer customer) {
+        return jdbcTemplate.update(UPDATE_CUSTOMER, customer.getFirstName(), customer.getLastName(), customerId);
     }
 
     @Autowired

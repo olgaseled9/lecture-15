@@ -4,7 +4,6 @@ import by.itacademy.javaenterprise.seledtsova.entity.Customer;
 
 import java.util.List;
 
-
 public interface CustomerDao<K> {
 
     void addCustomer(Customer customer);
@@ -15,5 +14,5 @@ public interface CustomerDao<K> {
 
     Customer findCustomerByCustomerId(Integer customerID);
 
-    public void update(int customerId, Customer customer);
+    public int updateCustomerByCustomerId(int customerId, Customer customer);
 }

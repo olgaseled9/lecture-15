@@ -3,6 +3,7 @@ package by.itacademy.javaenterprise.seledtsova.dao;
 import by.itacademy.javaenterprise.seledtsova.dao.impl.CustomerDaoImpl;
 import by.itacademy.javaenterprise.seledtsova.dao.impl.OrderDaoImpl;
 import by.itacademy.javaenterprise.seledtsova.entity.Customer;
+import org.flywaydb.core.Flyway;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,11 +29,16 @@ public class CustomerDaoTest {
         dataSource = new DriverManagerDataSource("jdbc:postgresql://localhost:5432/imagine_store?useUnicode=true&characterEncoding=UTF-8",
                 "postgres", "postgres");
         jdbcTemplate = new JdbcTemplate(dataSource);
-        namedParameterJdbcTemplate=new NamedParameterJdbcTemplate(jdbcTemplate);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         customerDao = new CustomerDaoImpl(jdbcTemplate);
-        orderDao=new OrderDaoImpl(namedParameterJdbcTemplate);
-
+        orderDao = new OrderDaoImpl(namedParameterJdbcTemplate);
+        Flyway flyway = Flyway.configure()
+                .dataSource(dataSource)
+                .locations("classpath:sql")
+                .load();
+        flyway.migrate();
     }
+
 
     @Test
     public void testFindCustomerById() {
@@ -41,7 +47,7 @@ public class CustomerDaoTest {
         assertEquals(customerId, customer.getCustomerId());
     }
 
-     @Test
+    @Test
     public void testUpdateCustomer() {
         Customer customer = new Customer(1, "Anna", "Korenina");
         customer.setCustomerId(1);

@@ -1,5 +1,6 @@
-package by.itacademy.javaenterprise.seledtsova.config;
+package by.itacademy.javaenterprise.seledtsova;
 
+import by.itacademy.javaenterprise.seledtsova.config.SpringConfig;
 import by.itacademy.javaenterprise.seledtsova.dao.CustomerDao;
 import by.itacademy.javaenterprise.seledtsova.dao.OrderDao;
 import by.itacademy.javaenterprise.seledtsova.dao.impl.CustomerDaoImpl;
@@ -17,6 +18,7 @@ public class RunnerSpring {
     private final static Logger logger = LoggerFactory.getLogger(RunnerSpring.class);
 
     public static void main(String[] args) throws SQLException {
+
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
         CustomerDao customerDao = context.getBean("customerDaoBean", CustomerDaoImpl.class);

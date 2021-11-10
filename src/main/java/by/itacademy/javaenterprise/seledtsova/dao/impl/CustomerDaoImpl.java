@@ -14,8 +14,7 @@ import java.util.List;
 @Component("customerDaoBean")
 public class CustomerDaoImpl implements CustomerDao {
 
-    private final static Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
-
+    private static final Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
 
     private DataSource dataSource;
     private final JdbcTemplate jdbcTemplate;

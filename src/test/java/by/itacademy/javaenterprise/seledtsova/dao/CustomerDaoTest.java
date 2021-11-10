@@ -32,13 +32,7 @@ public class CustomerDaoTest {
         namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         customerDao = new CustomerDaoImpl(jdbcTemplate);
         orderDao = new OrderDaoImpl(namedParameterJdbcTemplate);
-        Flyway flyway = Flyway.configure()
-                .dataSource(dataSource)
-                .locations("classpath:sql")
-                .load();
-        flyway.migrate();
     }
-
 
     @Test
     public void testFindCustomerById() {

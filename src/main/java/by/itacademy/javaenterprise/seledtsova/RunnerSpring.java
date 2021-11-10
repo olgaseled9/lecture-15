@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 public class RunnerSpring {
 
-    private final static Logger logger = LoggerFactory.getLogger(RunnerSpring.class);
+    private static final Logger logger = LoggerFactory.getLogger(RunnerSpring.class);
 
     public static void main(String[] args) throws SQLException {
 

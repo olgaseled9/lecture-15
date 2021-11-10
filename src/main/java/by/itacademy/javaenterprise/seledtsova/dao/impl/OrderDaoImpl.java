@@ -23,9 +23,9 @@ public class OrderDaoImpl implements OrderDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private MapSqlParameterSource mapSqlParameterSource;
 
-    public static final String SELECT_FROM_ORDER_TABLE = "SELECT * FROM Orders ORDER BY order_id LIMIT 100 OFFSET 1;";
+    public static final String SELECT_FROM_ORDER_TABLE = "SELECT order_id, customer_id, date_order FROM Orders ORDER BY order_id LIMIT 100 OFFSET 1;";
     public static final String DELETE_ORDER_FROM_CUSTOMER_TABLES = "DELETE FROM Orders WHERE order_id = :order_id";
-    public static final String SELECT_FROM_ORDER_TABLE_ORDER_ID = "SELECT * FROM Orders WHERE order_id=?";
+    public static final String SELECT_FROM_ORDER_TABLE_ORDER_ID = "SELECT order_id, customer_id, date_order FROM Orders WHERE order_id=?";
     private static final String ADD_NEW_ORDER = "INSERT INTO Orders (order_id, customer_id, date_order) VALUES (:order_id, :customer_id, :date_order)";
     private static final String UPDATE_ORDER = "UPDATE Orders SET customer_id=:customer_id, date_order=:date_order WHERE order_id=?";
 

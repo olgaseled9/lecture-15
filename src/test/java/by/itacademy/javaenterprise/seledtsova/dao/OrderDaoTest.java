@@ -1,10 +1,8 @@
 package by.itacademy.javaenterprise.seledtsova.dao;
 
-import by.itacademy.javaenterprise.seledtsova.dao.impl.CustomerDaoImpl;
 import by.itacademy.javaenterprise.seledtsova.dao.impl.OrderDaoImpl;
 import by.itacademy.javaenterprise.seledtsova.entity.Order;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -18,7 +16,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class OrderDaoTst {
+public class OrderDaoTest {
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplateMock;
     private OrderDao orderDao;
@@ -28,6 +26,7 @@ public class OrderDaoTst {
         namedParameterJdbcTemplateMock = Mockito.mock(NamedParameterJdbcTemplate.class);
         orderDao = new OrderDaoImpl(namedParameterJdbcTemplateMock);
     }
+
     @Test
     public void shouldGetAllOrdersTest() {
         List<Order> orders = orderDao.getAll();

@@ -1,15 +1,12 @@
-## Hometask lecture 14
+## Hometask lecture 15
 
-0. git repo (lecture-14)
-1. base on hometask 13
-2. README with the task (Done)
-3. Add JDBC template from spring (Done)
-4. Add 1 DAO implementation with JDBC template (Done)
-5. Add 1 DAO implementation with Named JDBC template (Done)
-   NOTE: should be used: queryForObject  (Done)
-   Additional for 10
-6. docker-compose (Done)
-7. Tests for DAO (Done)
+add mock test for jdbctemplate dao add mock test for datasource dao
+
+## What is done :
+
+1. CustomerDaoTest.class -> mock test for jdbctemplate;
+2. ItemDaoTest.class -> mock test for datasource;
+3. OrderDaoTest.class -> mock test for namedParameterJdbcTemplate;
 
 ## Technologies
 

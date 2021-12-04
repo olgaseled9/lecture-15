@@ -1,6 +1,5 @@
 package by.itacademy.javaenterprise.seledtsova.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

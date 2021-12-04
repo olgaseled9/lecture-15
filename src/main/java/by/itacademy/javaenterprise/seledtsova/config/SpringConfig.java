@@ -1,6 +1,7 @@
 package by.itacademy.javaenterprise.seledtsova.config;
 
 import by.itacademy.javaenterprise.seledtsova.dao.impl.CustomerDaoImpl;
+import by.itacademy.javaenterprise.seledtsova.dao.impl.ItemDaoImpl;
 import by.itacademy.javaenterprise.seledtsova.dao.impl.OrderDaoImpl;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,6 +42,11 @@ public class SpringConfig {
         basicDataSource.setMinIdle(databaseMixIdle);
         basicDataSource.setMaxIdle(databaseMaxIdle);
         return basicDataSource;
+    }
+
+    @Bean
+    ItemDaoImpl itemDaoBean() {
+        return new ItemDaoImpl();
     }
 
     @Bean

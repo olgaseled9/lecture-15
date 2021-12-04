@@ -26,12 +26,6 @@ public class CustomerDaoTest {
     }
 
     @Test
-    public void shouldGetAllCustomersTest() {
-        List<Customer> customers = customerDao.getAll();
-        Assertions.assertThat(customers.size()).isZero();
-    }
-
-    @Test
     public void shouldFindCustomerByIdTest() {
         long customerId = 9;
         Customer customer = new Customer();
@@ -61,6 +55,12 @@ public class CustomerDaoTest {
         when(jdbcTemplateMock.queryForObject(Mockito.anyString(), Mockito.<RowMapper<Customer>>any(),
                 Mockito.any())).thenReturn(customer);
         Assertions.assertThat(customer).isNull();
+    }
+
+    @Test
+    public void shouldGetAllCustomersTest() {
+        List<Customer> customers = customerDao.getAll();
+        Assertions.assertThat(customers.size()).isZero();
     }
 }
 
